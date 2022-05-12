@@ -11,15 +11,33 @@ class invalidusername extends Exception
 
 class Testusername
 {
-    void validate(String name) throws invalidusername{
-        if(name.length() < 6)
+    void validate() throws invalidusername{
+        Scanner sc = new Scanner(System.in);
+        try
         {
-            throw new invalidusername("Username is not valid.\nIt should be less than 6 characters");
+            String name;
+            System.out.println("Enter your username for the account");
+            name = sc.next();
+
+            if(name.length()<6 || name.length() == 0)
+            {
+                System.out.println("Sorry the username cannot be less than 6 characters");
+                throw new invalidusername("Check your username again!!!");
+            }
+            else
+            {
+                System.out.println("Welcome "+ name);
+            }
+        }
+        catch(invalidusername ex)
+        {
+            System.out.println("Exception caught");
+            System.out.println("Exception occured: "+ex);
         }
     }
 }
 
-public class except {
+public class except{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         Testusername obj1 = new Testusername();
@@ -40,6 +58,8 @@ public class except {
             {
                 case 1:
                     System.out.println("Welcome to the login portal for online examination portal");
+                    Testusername obj = new Testusername();
+                    obj.validate();
             }
         }
     }
